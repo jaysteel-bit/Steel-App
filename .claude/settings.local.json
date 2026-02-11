@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init:*)",
+      "Bash(git config:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: Steel by Exo — iOS app foundation\n\nInitialize complete SwiftUI project with:\n- Design system \\(SteelTheme\\): colors, fonts, spacing matching web prototype\n- Data models: SteelProfile \\(privacy gradient\\), VerificationState, Connections\n- NFC integration: CoreNFC service for NDEF read/write \\(tag structure spec\\)\n- UI components: GlassCard, ParticleEmitterView, OrbView, MetallicText, buttons\n- Views: Onboarding \\(3-page flow\\), Home \\(3-state container\\), NFC tap, PIN verification, profile reveal\n- ViewModels: VerificationViewModel orchestrating full tap→verify→reveal flow with simulation mode\n- Services: NFCService \\(CoreNFC\\), SMSVerificationService \\(Twilio stub\\), ProfileService \\(Convex stub\\), Auth \\(Clerk stub\\)\n- Backend: Express stubs for SMS, auth, profile endpoints with in-memory sessions\n- Config: Info.plist, entitlements for NFC capability, .env template for API keys\n\nAll code is verbose, heavily commented, and ready for real service integration.\nSimulation mode enabled by default — full UI flow works without backend.\n\nCo-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git remote add:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Bash(dir:*)",
+      "Read(//c/**)"
+    ]
+  }
+}

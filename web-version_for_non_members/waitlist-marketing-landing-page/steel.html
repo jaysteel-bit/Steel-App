@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steel by Exo | Access Redefined</title>
+    <meta name="description"
+        content="Steel by Exo. The definitive identity ecosystem for the exceptional. Seamless access, curated connections, and absolute control. Invitation-only.">
+    <meta property="og:title" content="Steel by Exo | Access Redefined">
+    <meta property="og:description" content="The definitive identity ecosystem for the exceptional. Invitation-only.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/logos/LOGO%20MARK.png">
+    <link rel="icon" type="image/png" href="/logos/LOGO%20MARK.png">
+
+    <!-- PostHog Analytics -->
+    <script>
+        !function (t, e) { var o, n, p, r; e.__SV || (window.posthog = e, e._i = [], e.init = function (i, s, a) { function g(t, e) { var o = e.split("."); 2 == o.length && (t = t[o[0]], e = o[1]), t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } } (p = t.createElement("script")).type = "text/javascript", p.async = !0, p.src = s.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") + "/static/array.js", (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(p, r); var u = e; for (void 0 !== a ? u = e[a] = [] : a = "posthog", u.people = u.people || [], u.toString = function (t) { var e = "posthog"; return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e }, u.people.toString = function () { return u.toString(1) + ".people (stub)" }, o = "init capture register register_once register_for_session unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group identify setPersonProperties setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags resetGroups onFeatureFlags addFeatureFlagsHandler onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep".split(" "), n = 0; n < o.length; n++)g(u, o[n]); e._i.push([i, s, a]) }, e.__SV = 1) }(document, window.posthog || []);
+        posthog.init('phc_N1Clw6iwKeyIqhNrxd1cejjCuvKXPtW17bn9h6ZUw9b', {
+            api_host: 'https://us.i.posthog.com',
+            defaults: '2025-11-30'
+        })
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <!-- VanillaTilt.js -->
+    <script src="https://unpkg.com/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            black: '#050505',
+                            dark: '#0a0a0a',
+                            gray: '#1f1f1f',
+                            text: '#f5f5f5',
+                            muted: '#a3a3a3',
+                            accent: '#10b981', // Emerald
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1.5s ease-out forwards',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                        'shine': 'shine 5s linear infinite',
+                    },
+                    keyframes: {
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                        slideUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        shine: { to: { backgroundPosition: '200% center' } }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #f5f5f5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+        }
+
+        .metallic-text {
+            background: linear-gradient(to right, #ffffff 20%, #a0a0a0 50%, #ffffff 80%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            background-size: 200% auto;
+            color: transparent;
+            animation: shine 5s linear infinite;
+        }
+
+        .scan-line {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #10b981;
+            box-shadow: 0 0 20px #10b981;
+            opacity: 0;
+        }
+
+        #ambient-glow-1,
+        #ambient-glow-2 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 9999px;
+            background: radial-gradient(circle, #10b981 0%, transparent 70%);
+            filter: blur(100px);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        #ambient-glow-1 {
+            top: -200px;
+            left: -200px;
+        }
+
+        #ambient-glow-2 {
+            bottom: -200px;
+            right: -200px;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col items-center relative overflow-x-hidden">
+
+    <!-- Ambient Emerald Glows -->
+    <div id="ambient-glow-1"></div>
+    <div id="ambient-glow-2"></div>
+
+    <!-- Background Particles -->
+    <div id="particles-bg" class="absolute inset-0 -z-10"></div>
+
+    <!-- Main Content -->
+    <main class="w-full max-w-xl mx-auto flex flex-col items-center text-center space-y-24 py-12 px-6">
+
+        <!-- Hero Title (above demo) -->
+        <header class="space-y-8 animate-fade-in">
+            <span
+                class="text-xs uppercase tracking-[0.3em] text-brand-muted font-medium border border-white/10 px-3 py-1 rounded-full">Steel
+                by Exo</span>
+            <h1 class="font-serif text-5xl md:text-6xl leading-tight font-medium tracking-tight">
+                Access <span class="italic text-brand-muted">Redefined.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-brand-muted max-w-md mx-auto leading-relaxed font-light">
+                Tap. Verify. Connect — with absolute control.
+            </p>
+        </header>
+
+        <!-- Interactive Phone Demo -->
+        <div class="w-full max-w-sm animate-slide-up" id="phone-tilt" data-tilt data-tilt-max="10" data-tilt-speed="400"
+            data-tilt-glare="true" data-tilt-max-glare="0.3">
+            <div
+                class="phone-screen relative bg-brand-dark rounded-3xl p-8 shadow-2xl border border-white/10 overflow-hidden h-[700px] flex flex-col items-center justify-center">
+
+                <!-- Locked State -->
+                <div id="locked" class="absolute inset-0 flex flex-col items-center justify-center space-y-8">
+                    <div id="orb" class="w-48 h-48 rounded-full"></div>
+                    <div class="space-y-4">
+                        <h2 class="text-3xl font-serif italic">Tap to Connect</h2>
+                        <p class="text-sm text-brand-muted">Simulate NFC tap-to-share</p>
+                        <button id="simulate-tap"
+                            class="px-8 py-4 bg-brand-accent text-black font-medium rounded-full hover:bg-emerald-400 transition transform hover:scale-105">
+                            Simulate Tap
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Verification State -->
+                <div id="verification"
+                    class="absolute inset-0 flex flex-col items-center justify-center space-y-12 opacity-0 pointer-events-none">
+                    <div id="orb-active" class="w-64 h-64 rounded-full relative">
+                        <div class="scan-line" id="scan-line"></div>
+                    </div>
+                    <div class="pin-container flex gap-4">
+                        <div class="pin-field w-12 h-12 bg-brand-gray rounded-lg border-2 border-white/30"></div>
+                        <div class="pin-field w-12 h-12 bg-brand-gray rounded-lg border-2 border-white/30"></div>
+                        <div class="pin-field w-12 h-12 bg-brand-gray rounded-lg border-2 border-white/30"></div>
+                        <div class="pin-field w-12 h-12 bg-brand-gray rounded-lg border-2 border-white/30"></div>
+                    </div>
+                    <p class="text-sm text-brand-muted">Verifying secure access...</p>
+                </div>
+
+                <!-- Profile Unlocked State -->
+                <div id="profile"
+                    class="absolute inset-0 flex flex-col items-center justify-center space-y-8 opacity-0 px-8 pointer-events-none">
+                    <div class="glass rounded-2xl p-8 w-full text-center space-y-6">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alex Rivera"
+                            class="w-32 h-32 rounded-full mx-auto object-cover border-4 border-brand-accent/50 shadow-2xl">
+                        <h1 class="font-serif text-4xl italic metallic-text">Alexa Rivera</h1>
+                        <p class="text-sm text-brand-muted">Creative Director | NYC</p>
+                        <span
+                            class="inline-block px-4 py-1 bg-brand-accent/10 text-brand-accent text-xs uppercase rounded-full">Steel
+                            Member</span>
+                        <div class="grid grid-cols-3 gap-6 mt-8">
+                            <a href="#" class="flex flex-col items-center space-y-2 hover:scale-110 transition">
+                                <i data-lucide="instagram" class="w-8 h-8 text-white"></i>
+                                <span class="text-xs">@alexa.rivera</span>
+                            </a>
+                            <a href="#" class="flex flex-col items-center space-y-2 hover:scale-110 transition">
+                                <i data-lucide="linkedin" class="w-8 h-8 text-white"></i>
+                                <span class="text-xs">LinkedIn</span>
+                            </a>
+                            <a href="#" class="flex flex-col items-center space-y-2 hover:scale-110 transition">
+                                <i data-lucide="phone" class="w-8 h-8 text-white"></i>
+                                <span class="text-xs">Contact</span>
+                            </a>
+                        </div>
+                        <div class="space-y-4 mt-8">
+                            <button
+                                class="w-full py-3 bg-brand-accent text-black font-medium rounded-lg hover:bg-emerald-400 transition">
+                                Add to Contacts
+                            </button>
+                            <button
+                                class="w-full py-3 bg-white/10 text-white font-medium rounded-lg hover:bg-white/20 transition">
+                                Join the Waitlist
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Benefits & CTA (kept from original for full marketing page) -->
+        <section class="grid gap-8 w-full md:grid-cols-3 text-center md:text-left px-4 md:px-0">
+            <div class="space-y-3 flex flex-col items-center md:items-start group">
+                <div class="p-3 rounded-full bg-white/5 group-hover:bg-white/10 transition-colors">
+                    <i data-lucide="zap" class="w-5 h-5 text-gray-300"></i>
+                </div>
+                <h3 class="font-medium text-white text-sm tracking-wide uppercase">Seamless Access</h3>
+                <p class="text-sm text-brand-muted leading-relaxed">Tap into exclusive venues and curated partner
+                    experiences instantly.</p>
+            </div>
+            <div class="space-y-3 flex flex-col items-center md:items-start group">
+                <div class="p-3 rounded-full bg-white/5 group-hover:bg-white/10 transition-colors">
+                    <i data-lucide="shield-check" class="w-5 h-5 text-gray-300"></i>
+                </div>
+                <h3 class="font-medium text-white text-sm tracking-wide uppercase">Controlled Connection</h3>
+                <p class="text-sm text-brand-muted leading-relaxed">Share your profiles with a tap. You decide
+                    specifically who gets in.</p>
+            </div>
+            <div class="space-y-3 flex flex-col items-center md:items-start group">
+                <div class="p-3 rounded-full bg-white/5 group-hover:bg-white/10 transition-colors">
+                    <i data-lucide="credit-card" class="w-5 h-5 text-gray-300"></i>
+                </div>
+                <h3 class="font-medium text-white text-sm tracking-wide uppercase">Unified Identity</h3>
+                <p class="text-sm text-brand-muted leading-relaxed">One premium platform for payments, networking, and
+                    membership.</p>
+            </div>
+        </section>
+
+        <!-- Waitlist CTA -->
+        <section class="w-full max-w-sm mx-auto pt-8">
+            <form id="waitlist-form" class="space-y-4">
+                <input type="text" id="firstName" required placeholder="First name"
+                    class="w-full px-4 py-3.5 glass rounded-lg text-white placeholder-neutral-500 text-sm">
+                <input type="email" id="email" required placeholder="Enter your email"
+                    class="w-full px-4 py-3.5 glass rounded-lg text-white placeholder-neutral-500 text-sm">
+                <button type="submit"
+                    class="w-full py-3.5 bg-brand-accent text-black font-medium rounded-lg hover:bg-emerald-400 transition-all transform active:scale-[0.98] text-sm tracking-wide flex items-center justify-center gap-2 group">
+                    <span>Request Invite</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"></i>
+                </button>
+                <div class="flex justify-between items-center px-1">
+                    <p class="text-[10px] text-neutral-600 uppercase tracking-wider">Invitations Q3 2026</p>
+                    <p class="text-[10px] text-neutral-600 uppercase tracking-wider">First 100 Members</p>
+                </div>
+            </form>
+
+            <!-- Mobile Logo Placement -->
+            <div class="block md:hidden mt-12 mb-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <img src="./logos/Exo MasterLogo/Steel Master Logo/Steel Logo - Transparent.png" alt="Steel by Exo"
+                    class="w-24 mx-auto">
+            </div>
+
+            <div id="success-message"
+                class="hidden space-y-4 pt-4 text-center animate-slide-up flex flex-col items-center">
+                <div
+                    class="inline-flex items-center justify-center p-2 rounded-full bg-emerald-500/10 text-emerald-500 mb-2">
+                    <i data-lucide="check" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-white font-serif text-xl">You're on the list.</h3>
+                <p class="text-sm text-brand-muted">Watch your inbox. We'll be in touch Q3 2026.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Desktop Logo Placement -->
+    <a href="#" class="hidden md:block fixed top-8 left-8 w-32 opacity-80 hover:opacity-100 transition-opacity z-50">
+        <img src="./logos/Exo MasterLogo/Steel Master Logo/Steel Logo - Transparent.png" alt="Steel by Exo">
+    </a>
+
+    <script>
+        lucide.createIcons();
+
+        // Background Particles (subtle emerald)
+        particlesJS('particles-bg', {
+            particles: { number: { value: 30 }, color: { value: '#10b981' }, shape: { type: 'circle' }, opacity: { value: 0.3, random: true }, size: { value: 3, random: true }, line_linked: { enable: false }, move: { enable: true, speed: 0.5, direction: 'none', random: true } },
+            interactivity: { events: { onhover: { enable: true, mode: 'repulse' } } }
+        });
+
+        // Orb Particles (dense neural/orb style)
+        particlesJS('orb', {
+            particles: { number: { value: 80 }, color: { value: '#ffffff' }, shape: { type: 'circle' }, opacity: { value: 0.8, random: true }, size: { value: 2, random: true }, line_linked: { enable: true, color: '#ffffff', opacity: 0.2, width: 1 }, move: { speed: 1 } },
+            interactivity: { events: { onhover: { enable: true, mode: 'repulse' } } }
+        });
+
+        // Tilt for phone
+        VanillaTilt.init(document.getElementById('phone-tilt'), { max: 10, speed: 400, glare: true, 'max-glare': 0.3, gyroscope: true });
+
+        // Unlock Sequence
+        const tl = gsap.timeline({ paused: true });
+        tl.to('#locked', { opacity: 0, duration: 0.6 })
+            .to('#verification', { opacity: 1, duration: 0.8, pointerEvents: 'auto' }, '-=0.3')
+            .to('.pin-field', {
+                backgroundColor: '#10b981', borderColor: '#10b981', stagger: 0.4, duration: 0.4
+            }, '-=0.5')
+            .to('#scan-line', { opacity: 1, top: '0%', duration: 1.2 }, '-=0.8')
+            .to('#verification', { opacity: 0, pointerEvents: 'none', duration: 0.8 })
+            .to('#profile', {
+                opacity: 1, pointerEvents: 'auto', duration: 1.2, onComplete: () => {
+                    gsap.from('#profile > .glass > *', { y: 20, opacity: 0, stagger: 0.1, duration: 0.8 });
+                }
+            }, '-=0.5');
+
+        document.getElementById('simulate-tap').addEventListener('click', () => {
+            tl.restart();
+        });
+
+        // Optional: Auto-demo after 3s on load (comment out if unwanted)
+        // setTimeout(() => tl.play(), 3000);
+    </script>
+
+    <!-- Steel Waitlist: Convex + Mailchimp Integration -->
+    <script type="module">
+        import { client } from "./js/convex-client.js";
+
+        const form = document.getElementById('waitlist-form');
+
+        if (form) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const email = document.getElementById('email').value.trim();
+                const firstName = document.getElementById('firstName').value.trim();
+                const btn = form.querySelector('button');
+                const originalHTML = btn.innerHTML;
+
+                // Basic validation
+                if (!email || !email.includes('@')) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+                if (!firstName) {
+                    alert('Please enter your first name.');
+                    return;
+                }
+
+                // Loading state
+                btn.innerHTML = '<span class="animate-pulse">Processing...</span>';
+                btn.disabled = true;
+
+                try {
+                    // 1. Save lead to Convex database
+                    await client.mutation("leads:submitLead", {
+                        firstName: firstName,
+                        lastName: "Waitlist",
+                        email: email
+                    });
+
+                    // 2. Add subscriber to Mailchimp (Steel B2C audience)
+                    // Fire-and-forget: don't block UX on Mailchimp
+                    client.action("mailchimp:addSubscriber", {
+                        email: email,
+                        firstName: firstName,
+                        brandType: "steel_b2c"
+                    }).catch(err => console.error("Mailchimp sync error:", err));
+
+                    // 3. Track in PostHog
+                    if (typeof posthog !== 'undefined') {
+                        posthog.capture('steel_waitlist_signup', {
+                            page: 'steel',
+                            email: email
+                        });
+                    }
+
+                    // 4. Show success state
+                    document.getElementById('waitlist-form').classList.add('hidden');
+                    document.getElementById('success-message').classList.remove('hidden');
+
+                } catch (error) {
+                    console.error("Steel waitlist submission failed:", error);
+                    alert("Something went wrong. Please try again.");
+
+                    // Reset button
+                    btn.innerHTML = originalHTML;
+                    btn.disabled = false;
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
