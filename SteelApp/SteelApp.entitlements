@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- NFC Tag Reading Capability -->
+    <!-- Required for CoreNFC to read/write NDEF tags -->
+    <!-- Enable in Xcode: Signing & Capabilities → + Capability → Near Field Communication Tag Reading -->
+    <key>com.apple.developer.nfc.readersession.formats</key>
+    <array>
+        <string>NDEF</string>
+        <string>TAG</string>
+    </array>
+
+    <!-- Associated Domains (for Universal Links) -->
+    <!-- When someone taps a Steel NFC tag without the app, the fallback URL opens. -->
+    <!-- With Universal Links, tapping steel.byexo.com/connect/* opens the app directly. -->
+    <key>com.apple.developer.associated-domains</key>
+    <array>
+        <string>applinks:steel.byexo.com</string>
+    </array>
+</dict>
+</plist>

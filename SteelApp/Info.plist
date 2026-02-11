@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- NFC Usage Description (REQUIRED for CoreNFC) -->
+    <!-- This message shows in the system permission dialog when the app first tries to scan NFC -->
+    <key>NFCReaderUsageDescription</key>
+    <string>Steel uses NFC to securely read and write identity tags for tap-to-share connections.</string>
+
+    <!-- NFC Tag Reader Session Formats -->
+    <!-- Tells iOS which NFC tag types this app can read -->
+    <key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
+    <array>
+        <!-- NDEF tag application identifier -->
+        <string>D2760000850101</string>
+    </array>
+
+    <!-- App Transport Security — allow localhost for development backend -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsLocalNetworking</key>
+        <true/>
+    </dict>
+
+    <!-- URL Schemes for deep linking (steel://connect/memberId) -->
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>steel</string>
+            </array>
+            <key>CFBundleURLName</key>
+            <string>com.exo.steel</string>
+        </dict>
+    </array>
+
+    <!-- Associated Domains will be configured in entitlements -->
+    <!-- for Universal Links: steel.byexo.com/connect/* -->
+
+    <!-- Camera Usage (for future profile photo capture) -->
+    <key>NSCameraUsageDescription</key>
+    <string>Steel uses your camera to capture your profile photo.</string>
+
+    <!-- Photo Library Usage (for future profile photo selection) -->
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Steel uses your photo library to select a profile photo.</string>
+
+    <!-- Contacts Usage (for "Add to Contacts" feature) -->
+    <key>NSContactsUsageDescription</key>
+    <string>Steel adds shared profiles to your contacts when you choose to save them.</string>
+</dict>
+</plist>
